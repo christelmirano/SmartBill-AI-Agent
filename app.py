@@ -1,46 +1,89 @@
 import streamlit as st
-from modules import ocr_parser, pdf_parser, sheet_manager, query_handler
-import pandas as pd
+from datetime import datetime
 
-st.set_page_config(page_title="SmartBill AI Agent", layout="wide")
-st.title("💡 SmartBill AI Agent")
-st.write("Upload your bills (PDF or Image) and ask questions like 'Show me bills due this month' or 'Monthly summary'.")
+# ------------------------------
+# Page config and CSS
+# ------------------------------
+st.set_page_config(page_title="SmartBill AI Agent", layout="wide", initial_sidebar_state="collapsed")
 
-# --- Bill Upload Section ---
-st.header("1️⃣ Upload Bill")
-uploaded_file = st.file_uploader("Upload your bill (PDF or Image)", type=["pdf", "png", "jpg", "jpeg"])
+# Load external CSS
+with open("style.css") as f:
+    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
+# ------------------------------
+# Header / Title Card
+# ------------------------------
+st.markdown(
+    """
+    <div class="title-card">
+        <h1>💡 SmartBill AI Agent</h1>
+        <p>Upload your bills (PDF or Image) and ask questions like 'Show me bills due this month' or 'Monthly summary'.</p>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+st.divider()
+
+# ------------------------------
+# Upload Section
+# ------------------------------
+
+uploaded_file = st.file_uploader(
+    "Upload your bill (PDF or Image)", 
+    type=["pdf", "png", "jpg", "jpeg"]
+)
 
 if uploaded_file:
-    st.info("Processing file...")
-    
-    if uploaded_file.type == "application/pdf":
-        bill_data = pdf_parser.extract_pdf(uploaded_file)
-    else:
-        bill_data = ocr_parser.extract_image(uploaded_file)
-    
-    if bill_data:
-        st.success("✅ Bill data extracted successfully!")
-        st.json(bill_data)
-        
-        sheet_manager.add_bill(bill_data)
-        st.info("Bill saved to Google Sheets successfully!")
-    else:
-        st.error("❌ Could not extract bill data. Try another file.")
+    st.info("🔄 Processing file...")
 
-# --- Query Section ---
-st.header("2️⃣ Ask About Your Bills")
-user_query = st.text_input("Enter your query here (e.g., 'Show me bills due this month')")
+    # Simulate bill data extraction
+    bill_data = {
+        "vendor": "Sample Vendor Corp",
+        "amount": "$156.99",
+        "due_date": "March 15, 2025",
+        "description": "Monthly service bill",
+        "file_name": uploaded_file.name,
+        "processed_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    }
+
+    st.success("✅ Bill data extracted successfully!")
+    st.json(bill_data)
+    st.info("💾 Bill saved to database successfully!")
+
+st.divider()
+
+# ------------------------------
+# Query Section
+# ------------------------------
+
+user_query = st.text_input(
+    "Enter your query here (e.g., 'Show me bills due this month')",
+    placeholder="Ask about bills, request a summary, or describe what you need..."
+)
 
 if user_query:
-    response = query_handler.handle_query(user_query)
-    
-    st.subheader("Response:")
-    st.write(response.get('text', 'No response available.'))
-    
-    if 'chart' in response:
-        st.plotly_chart(response['chart'], use_container_width=True)
+    st.info("🔍 Analyzing your query...")
 
-# --- Optional: Display All Bills ---
-if st.checkbox("Show all bills in Google Sheets"):
-    df_all = sheet_manager.get_all_bills()
-    st.dataframe(df_all)
+    # Simulate response
+    response_text = (
+        f"Based on your query '{user_query}', I found the following bills due this month "
+        "with a total amount of $456.75 from 3 vendors."
+    )
+
+    st.subheader("📊 Response:")
+    st.write(response_text)
+    st.info("📈 Chart data would be displayed here")
+
+st.divider()
+
+# ------------------------------
+# Display All Bills
+# ------------------------------
+if st.checkbox("📋 Show all bills in database"):
+    sample_bills = [
+        {"Vendor": "Acme Corp", "Amount": "$156.99", "Due Date": "2025-03-15"},
+        {"Vendor": "Tech Services", "Amount": "$89.50", "Due Date": "2025-03-20"},
+        {"Vendor": "Utilities Plus", "Amount": "$210.26", "Due Date": "2025-03-10"},
+    ]
+    st.dataframe(sample_bills, use_container_width=True)

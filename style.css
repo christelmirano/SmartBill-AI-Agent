@@ -1,0 +1,262 @@
+:root {
+    --primary-orange: #f97316;
+    --primary-orange-dark: #ea580c;
+    --orange-light: #fef3c7;
+    --orange-50: #fff7ed;
+    --slate-900: #0f172a;
+    --slate-800: #1e293b;
+    --slate-700: #334155;
+    --white: #ffffff;
+}
+
+/* Main container */
+.stMainBlockContainer {
+    background: linear-gradient(to bottom right, #fff7ed, #ffffff,#fff7ed);
+    padding: 5 !important;
+}
+
+/* Header styling */
+.stApp > header {
+    background: linear-gradient(to right, #f97316, #fb923c);
+    border: 10px solid #fed7aa;
+}
+
+@media (prefers-color-scheme: dark) {
+    .stApp > header {
+        background: linear-gradient(to right, #ea580c, #f97316);
+        border: 10px solid #7c2d12;
+    }
+}
+
+/* Header section styling */
+h2 {
+    color: black !important;
+    font-weight: 600 !important;
+    font-size: 1.5rem !important;
+    margin-top: 20px !important;
+    margin-bottom: 1rem !important;
+    border-left: 4px solid #f97316;
+    padding-left: 1rem;
+}
+
+/* @media {
+    h2 {
+        color: black !important;
+        border-left-color: #fb923c;
+    }
+} */
+
+/* Card/container styling */
+.stContainer, .element-container {
+    background-color: transparent !important;
+    border : 10 px;
+}
+
+
+/* File uploader styling */
+.uploadedFile {
+    background: linear-gradient(135deg, #fef3c7, #fde68a);
+    border: 2px solid #f97316;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    margin: 0.5rem 0;
+}
+
+[data-testid="stFileUploader"] label p {
+    color: var(--primary-orange) !important;
+    font-weight: 600 !important;
+    font-size: 2 rem;
+}
+
+[data-testid="stTextInput"] label p {
+    color: var(--primary-orange) !important;
+    font-weight: 600 !important;
+}
+
+[data-testid="stCheckbox"] label p {
+    color: var(--primary-orange) !important;
+    font-weight: 600 !important;
+}
+
+@media (prefers-color-scheme: dark) {
+    .uploadedFile {
+        background: linear-gradient(135deg, #7c2d12, #92400e);
+        border-color: #fb923c;
+    }
+}
+
+/* Button styling */
+.stButton > button {
+    background: linear-gradient(to right, #f97316, #fb923c) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 0.75rem !important;
+    font-weight: 600 !important;
+    padding: 0.75rem 1.5rem !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 6px rgba(249, 115, 22, 0.2) !important;
+}
+
+.stButton > button:hover {
+    box-shadow: 0 8px 12px rgba(249, 115, 22, 0.35) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Title card */
+.title-card {
+    background: linear-gradient(to right, #f97316, #fb923c) !important; 
+    padding: 20px 30px; 
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+    margin-bottom: 25px; 
+    border: 1px solid #e0e0e0;
+}
+
+.title-card h1 {
+    font-size: 3rem;          /* Adjust size */
+    color: white !important;           /* Change text color */
+    font-weight: 800;          /* Make it bolder */
+    margin: 0;                 /* Remove default margin */
+    letter-spacing: -1px;      /* Optional: spacing between letters */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2); /* Optional: subtle shadow */
+}
+
+.title-card p {
+    font-size: 20px;          /* Adjust size */
+    color: white !important;           /* Change text color */
+}
+
+
+/* Input field styling */
+.stTextInput > div > div > input {
+    background-color: #f9fafb !important;
+    border: 2px solid #e5e7eb !important;
+    border-radius: 0.75rem !important;
+    padding: 0.75rem 1rem !important;
+    font-size: 1rem !important;
+    transition: all 0.2s ease !important;
+}
+
+.stTextInput > div > div > input:focus {
+    border-color: #f97316 !important;
+    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+    .stTextInput > div > div > input {
+        background-color: #1f2937 !important;
+        border-color: #374151 !important;
+        color: #f3f4f6 !important;
+    }
+    .stTextInput > div > div > input:focus {
+        border-color: #fb923c !important;
+        box-shadow: 0 0 0 3px rgba(251, 146, 60, 0.1) !important;
+    }
+}
+
+/* Info/success/error message styling */
+.stAlert {
+    border-radius: 0.75rem !important;
+    border-left: 4px solid #f97316 !important;
+}
+
+.stSuccess {
+    background-color: #dcfce7 !important;
+    color: #166534 !important;
+    border-left-color: #16a34a !important;
+}
+
+.stError {
+    background-color: #fee2e2 !important;
+    color: #991b1b !important;
+    border-left-color: #dc2626 !important;
+}
+
+.stInfo {
+    background-color: #fef3c7 !important;
+    color: #78350f !important;
+    border-left-color: #f97316 !important;
+}
+
+@media (prefers-color-scheme: dark) {
+    .stSuccess {
+        background-color: #064e3b !important;
+        color: #d1fae5 !important;
+    }
+    .stError {
+        background-color: #7f1d1d !important;
+        color: #fecaca !important;
+    }
+    .stInfo {
+        background-color: #78350f !important;
+        color: #fef3c7 !important;
+    }
+}
+
+/* JSON display styling */
+.stJson {
+    background: linear-gradient(135deg, #f9fafb, #f3f4f6);
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+    .stJson {
+        background: linear-gradient(135deg, #1f2937, #111827);
+        border-color: #374151;
+    }
+}
+
+/* Dataframe styling */
+.stDataFrame {
+    border-radius: 0.75rem !important;
+    overflow: hidden !important;
+}
+
+/* Checkbox styling */
+.stCheckbox {
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.stCheckbox:hover {
+    background-color: rgba(249, 115, 22, 0.05);
+}
+
+/* Text styling */
+body {
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+p {
+    line-height: 1.6;
+    color: #374151;
+}
+
+@media (prefers-color-scheme: dark) {
+    p {
+        color: #d1d5db;
+    }
+}
+
+/* Divider styling */
+hr {
+    border-color: rgba(249, 115, 22, 0.2) !important;
+    margin: 2rem 0 !important;
+}
+
+/* Subheader styling */
+h3 {
+    color: #1f2937 !important;
+    font-weight: 600 !important;
+    margin-top: 1.5rem !important;
+    margin-bottom: 0.75rem !important;
+}
+
+@media (prefers-color-scheme: dark) {
+    h3 {
+        color: #f3f4f6 !important;
+    }
+}
